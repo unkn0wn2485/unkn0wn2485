@@ -3,241 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Endless Runner</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.min.js"></script> -->
-    <style>
-html, body {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f0f0f0;
-}
-
-canvas {
-  border: 1px solid black;
-}
-    </style>
+    <title>SaaS Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-black text-white font-sans">
+
+    <header class="fixed w-full bg-black bg-opacity-80 backdrop-blur-md z-50 border-b border-gray-700">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <h1 class="text-3xl font-bold tracking-wider">SYNTH</h1>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#features" class="hover:text-cyan-400 transition-colors duration-300">Features</a>
+                <a href="#about" class="hover:text-cyan-400 transition-colors duration-300">About</a>
+                <a href="#pricing" class="hover:text-cyan-400 transition-colors duration-300">Pricing</a>
+                <a href="#contact" class="hover:text-cyan-400 transition-colors duration-300">Contact</a>
+            </nav>
+            <button class="md:hidden" id="mobile-menu-button">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#features" class="block p-4 border-t border-gray-700">Features</a>
+            <a href="#about" class="block p-4 border-t border-gray-700">About</a>
+            <a href="#pricing" class="block p-4 border-t border-gray-700">Pricing</a>
+            <a href="#contact" class="block p-4 border-t border-gray-700">Contact</a>
+        </div>
+    </header>
+
+    <main class="pt-16">
+
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex items-center justify-center bg-grid-gray-800/20 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
+            <div class="text-center z-10 p-4" data-aos="fade-up">
+                <h2 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500">Unleash Your Digital Potential</h2>
+                <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="200">Synth is a cutting-edge SaaS platform designed to streamline your workflow, boost productivity, and drive unprecedented growth. Harness the power of AI and automation.</p>
+                <div class="flex justify-center space-x-4" data-aos="fade-up" data-aos-delay="400">
+                    <a href="#contact" class="bg-cyan-500 text-black font-bold py-3 px-8 rounded-md hover:bg-cyan-400 transition-all duration-300 shadow-lg shadow-cyan-500/20">Request a Demo</a>
+                    <a href="#features" class="bg-gray-800 text-white font-bold py-3 px-8 rounded-md hover:bg-gray-700 transition-all duration-300">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-24 bg-black">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h3 class="text-4xl font-extrabold tracking-tight">Next-Generation Features</h3>
+                    <p class="text-gray-400 mt-2">Built for performance, scalability, and security.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gray-900 p-8 rounded-xl border border-gray-800 hover:border-cyan-500 transition-all duration-300 transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
+                        <div class="text-cyan-400 mb-4"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m12.728 0l-.707.707M12 21v-1m-6.364-1.636l.707-.707m12.728 0l.707-.707"></path></svg></div>
+                        <h4 class="text-2xl font-bold mb-2">AI-Powered Insights</h4>
+                        <p class="text-gray-400">Leverage machine learning to get predictive analytics and actionable insights from your data in real-time.</p>
+                    </div>
+                    <div class="bg-gray-900 p-8 rounded-xl border border-gray-800 hover:border-cyan-500 transition-all duration-300 transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
+                        <div class="text-cyan-400 mb-4"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2V7a2 2 0 012-2h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293H17z"></path></svg></div>
+                        <h4 class="text-2xl font-bold mb-2">Collaborative Workspaces</h4>
+                        <p class="text-gray-400">Enable your team to work together seamlessly with shared dashboards, real-time editing, and integrated communication tools.</p>
+                    </div>
+                    <div class="bg-gray-900 p-8 rounded-xl border border-gray-800 hover:border-cyan-500 transition-all duration-300 transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="300">
+                        <div class="text-cyan-400 mb-4"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg></div>
+                        <h4 class="text-2xl font-bold mb-2">Enterprise-Grade Security</h4>
+                        <p class="text-gray-400">Your data is protected with end-to-end encryption, multi-factor authentication, and continuous security monitoring.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-24 bg-gray-900">
+            <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Team working" class="rounded-xl shadow-2xl">
+                </div>
+                <div class="md:w-1/2 md:pl-16" data-aos="fade-left">
+                    <h3 class="text-4xl font-extrabold tracking-tight">Who We Are</h3>
+                    <p class="text-gray-400 mt-4 text-lg">We are a passionate team of innovators, developers, and designers dedicated to building the future of software. Our mission is to empower businesses of all sizes to achieve their full potential through technology.</p>
+                    <p class="text-gray-400 mt-4">Synth was born from a desire to create a tool that is not only powerful but also intuitive and beautiful. We believe that great software should be a joy to use.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="py-24 bg-black">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h3 class="text-4xl font-extrabold tracking-tight">Flexible Pricing for Teams of All Sizes</h3>
+                    <p class="text-gray-400 mt-2">Choose the plan that's right for you. No hidden fees.</p>
+                </div>
+                <div class="grid lg:grid-cols-3 gap-8 items-stretch">
+                    <!-- Starter Plan -->
+                    <div class="bg-gray-900 p-8 rounded-xl border border-gray-800 flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex-grow">
+                            <h4 class="text-2xl font-bold">Starter</h4>
+                            <p class="text-gray-400 mt-2">For individuals and small teams.</p>
+                            <div class="mt-6">
+                                <span class="text-5xl font-extrabold">$29</span>
+                                <span class="text-gray-400">/ month</span>
+                            </div>
+                            <ul class="mt-6 space-y-4 text-gray-300">
+                                <li class="flex items-center"><svg class="w-5 h-5 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>10 Projects</li>
+                                <li class="flex items-center"><svg class="w-5 h-5 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>5 GB Storage</li>
+                                <li class="flex items-center"><svg class="w-5 h-5 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Basic Analytics</li>
+                            </ul>
+                        </div>
+                        <a href="#" class="mt-8 bg-gray-800 text-white font-bold py-3 px-6 rounded-md w-full text-center hover:bg-gray-700 transition-all duration-300">Choose Plan</a>
+                    </div>
+                    <!-- Pro Plan -->
+                    <div class="bg-gray-900 p-8 rounded-xl border-2 border-cyan-500 flex flex-col relative shadow-2xl shadow-cyan-500/20" data-aos="fade-up" data-aos-delay="200">
+                        <div class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
+                            <span class="bg-cyan-500 text-black font-bold text-xs py-1 px-3 rounded-full uppercase">Most Popular</span>
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="text-2xl font-bold">Pro</h4>
+                            <p class="text-gray-400 mt-2">For growing businesses and professionals.</p>
+                            <div class="mt-6">
+                                <span class="text-5xl font-extrabold">$79</span>
+                                <span class="text-gray-400">/ month</span>
+                            </div>
+                            <ul class="mt-6 space-y-4 text-gray-300">
+                                <li class="flex items-center"><svg class="w-5 h-5 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Unlimited Projects</li>
+                                <li class="flex items-center"><svg class="w-5 h-5 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>50 GB Storage</li>
+                                <li class="flex items-center"><svg class="w-5 h-5 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Advanced Analytics</li>
+                                <li class="flex items-center"><svg class="w-5 h-5 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Team Collaboration Tools</li>
+                                <li class="flex items-center"><svg class="w-5 h-5 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Priority Support</li>
+                            </ul>
+                        </div>
+                        <a href="#" class="mt-8 bg-cyan-500 text-black font-bold py-3 px-6 rounded-md w-full text-center hover:bg-cyan-400 transition-all duration-300">Choose Plan</a>
+                    </div>
+                    <!-- Enterprise Plan -->
+                    <div class="bg-gray-900 p-8 rounded-xl border border-gray-800 flex flex-col" data-aos="fade-up" data-aos-delay="300">
+                        <div class="flex-grow">
+                            <h4 class="text-2xl font-bold">Enterprise</h4>
+                            <p class="text-gray-400 mt-2">For large organizations with custom needs.</p>
+                             <div class="mt-6">
+                                <span class="text-4xl font-extrabold">Let's Talk</span>
+                            </div>
+                            <ul class="mt-6 space-y-4 text-gray-300">
+                                <li class="flex items-center"><svg class="w-5 h-5 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Custom Solutions</li>
+                                <li class="flex items-center"><svg class="w-5 h-5 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Dedicated Account Manager</li>
+                                <li class="flex items-center"><svg class="w-5 h-5 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>24/7 Premium Support</li>
+                                <li class="flex items-center"><svg class="w-5 h-5 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Custom Integrations</li>
+                            </ul>
+                        </div>
+                        <a href="#contact" class="mt-8 bg-gray-800 text-white font-bold py-3 px-6 rounded-md w-full text-center hover:bg-gray-700 transition-all duration-300">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 bg-gray-900">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h3 class="text-4xl font-extrabold tracking-tight">Get in Touch</h3>
+                    <p class="text-gray-400 mt-2">Have questions? We'd love to hear from you.</p>
+                </div>
+                <div class="max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                    <form class="bg-gray-800 p-8 rounded-xl border border-gray-700">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-bold text-gray-300 mb-2">Name</label>
+                                <input type="text" id="name" name="name" class="w-full bg-gray-700 text-white px-4 py-2 rounded-md border border-gray-600 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-bold text-gray-300 mb-2">Email</label>
+                                <input type="email" id="email" name="email" class="w-full bg-gray-700 text-white px-4 py-2 rounded-md border border-gray-600 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none">
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <label for="message" class="block text-sm font-bold text-gray-300 mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" class="w-full bg-gray-700 text-white px-4 py-2 rounded-md border border-gray-600 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none"></textarea>
+                        </div>
+                        <div class="mt-6 text-center">
+                            <button type="submit" class="bg-cyan-500 text-black font-bold py-3 px-8 rounded-md hover:bg-cyan-400 transition-all duration-300 shadow-lg shadow-cyan-500/20">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-black border-t border-gray-800">
+        <div class="container mx-auto py-8 px-4 text-center text-gray-500">
+            <p>&copy; 2024 SYNTH. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-class Player {
-  constructor() {
-    this.r = 60; // Radius of the player
-    this.x = 50;
-    this.y = height - this.r - groundHeight; // Start on the ground line (groundHeight is global)
-    this.vy = 0; // Velocity y
-    this.gravity = 2;
-  }
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
 
-  jump() {
-    // Ensure this.y is compared against the correct ground position
-    if (this.y >= height - this.r - groundHeight) {
-      this.vy = -30; // Jump strength
-    }
-  }
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-  hits(obstacle) {
-    // Get the bounding box for the player (ellipse)
-    let playerX1 = this.x - this.r / 2;
-    let playerY1 = this.y - this.r / 2;
-    let playerX2 = this.x + this.r / 2;
-    let playerY2 = this.y + this.r / 2;
-
-    // Get the bounding box for the obstacle (rectangle)
-    // Obstacle's x and y are its top-left corner
-    let obstacleX1 = obstacle.x;
-    let obstacleY1 = obstacle.y;
-    let obstacleX2 = obstacle.x + obstacle.r; // obstacle.r is its width and height
-    let obstacleY2 = obstacle.y + obstacle.r;
-
-    // Check for overlap
-    if (playerX2 >= obstacleX1 && playerX1 <= obstacleX2 &&
-        playerY2 >= obstacleY1 && playerY1 <= obstacleY2) {
-      return true;
-    }
-    return false;
-  }
-
-  move() {
-    this.y += this.vy;
-    this.vy += this.gravity;
-    // Constrain player to the screen, considering groundHeight
-    this.y = constrain(this.y, 0, height - this.r - groundHeight);
-  }
-
-  show() {
-    fill(50, 50, 200); // Player color
-    ellipseMode(CENTER); // Ensure ellipse is drawn from its center
-    ellipse(this.x, this.y, this.r, this.r);
-  }
-}
-
-class Obstacle {
-  constructor() {
-    this.r = Math.floor(random(30, 70)); // Random size for the obstacle
-    this.x = width; // Start at the right edge of the screen
-    this.y = height - this.r - groundHeight; // groundHeight is a global variable from sketch.js
-    this.speed = 6; // How fast the obstacle moves
-  }
-
-  move() {
-    this.x -= this.speed;
-  }
-
-  show() {
-    fill(200, 50, 50); // Obstacle color
-    rectMode(CORNER); // Ensure rectangles are drawn from the corner
-    // Draw a simple rectangle as an obstacle
-    // Later we can use sprites or more complex shapes
-    rect(this.x, this.y, this.r, this.r);
-  }
-}
-
-let player;
-const groundHeight = 20;
-let obstacles = [];
-let spawnInterval = 120; // Slightly increased for better initial playability
-let frameCounter = 0;
-// let gameIsOver = false; // We'll replace this with gameState
-
-// Game States
-const MENU = 0;
-const PLAYING = 1;
-const GAME_OVER = 2;
-let gameState = MENU; // Start with the menu state
-
-let score = 0; // Initialize score, will be used in a later step
-
-function setup() {
-  createCanvas(800, 400);
-  player = new Player(); // Player is created once
-  textAlign(CENTER, CENTER);
-  textSize(30); // Adjusted default text size
-}
-
-function keyPressed() {
-  if (gameState === MENU) {
-    if (key === ' ' || keyCode === UP_ARROW) {
-      startGame();
-    }
-  } else if (gameState === PLAYING) {
-    if (key === ' ' || keyCode === UP_ARROW) {
-      player.jump();
-    }
-  } else if (gameState === GAME_OVER) {
-    if (key === ' ' || keyCode === UP_ARROW) {
-      resetGame();
-    }
-  }
-}
-
-function mousePressed() { // Adding mouse press for jump and starting game
-  if (gameState === MENU) {
-      startGame();
-  } else if (gameState === PLAYING) {
-      player.jump();
-  } else if (gameState === GAME_OVER) {
-      resetGame();
-  }
-}
-
-
-function startGame() {
-  gameState = PLAYING;
-  score = 0; // Reset score when starting a new game
-  frameCounter = 0; // Reset frame counter for obstacle spawning
-  // Player is already created in setup, ensure it's reset if needed
-  player = new Player(); // Reset player state (position, velocity)
-  obstacles = []; // Clear any existing obstacles
-}
-
-function resetGame() {
-  gameState = MENU; // Go back to menu after game over
-  // Score is preserved to be shown on menu/game over screen if desired, or reset in startGame
-}
-
-function draw() {
-  background(220);
-  drawGround();
-
-  if (gameState === MENU) {
-    displayMenu();
-  } else if (gameState === PLAYING) {
-    runGame();
-  } else if (gameState === GAME_OVER) {
-    displayGameOver();
-  }
-}
-
-function drawGround() {
-  fill(100);
-  rect(0, height - groundHeight, width, groundHeight);
-}
-
-function displayMenu() {
-  fill(0);
-  text("Endless Runner", width / 2, height / 2 - 40);
-  textSize(20);
-  text("Press Space, Up Arrow, or Click to Start", width / 2, height / 2 + 10);
-  textSize(30); // Reset text size for other uses
-}
-
-function runGame() {
-  player.move();
-  player.show();
-
-  // Obstacle spawning logic
-  frameCounter++;
-  if (frameCounter % spawnInterval === 0) {
-    obstacles.push(new Obstacle());
-  }
-
-  // Iterate over obstacles array
-  for (let i = obstacles.length - 1; i >= 0; i--) {
-    obstacles[i].move();
-    obstacles[i].show();
-
-    if (player.hits(obstacles[i])) {
-      gameState = GAME_OVER;
-      // No need to call noLoop() here, the draw loop will switch to displayGameOver()
-      break;
-    }
-
-    if (obstacles[i].x + obstacles[i].r < 0) {
-      obstacles.splice(i, 1);
-      score++; // Increment score when an obstacle is successfully passed
-    }
-  }
-
-  // Display score during gameplay
-  fill(0);
-  textAlign(LEFT, TOP);
-  textSize(24);
-  text("Score: " + score, 10, 10);
-  textAlign(CENTER, CENTER); // Reset alignment
-  textSize(30); // Reset text size
-}
-
-function displayGameOver() {
-  fill(255, 0, 0);
-  text("GAME OVER", width / 2, height / 2 - 40);
-  textSize(20);
-  text("Your Score: " + score, width / 2, height / 2);
-  text("Press Space, Up Arrow, or Click to Return to Menu", width / 2, height / 2 + 30);
-  textSize(30); // Reset text size
-}
-
-// Ensure Player class constructor and methods use groundHeight correctly
-// No changes needed in player.js or obstacle.js for this step,
-// but ensure their y positions are relative to 'height' and 'groundHeight'.
-// For Player: this.y = height - this.r - groundHeight;
-// For Obstacle: this.y = height - this.r - groundHeight;
-// These should already be correct from previous steps.
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
     </script>
-    <!-- Add other script files here later -->
 </body>
 </html>
